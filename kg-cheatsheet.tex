@@ -1,0 +1,98 @@
+\documentclass[11pt]{article}
+
+% This macro was available as part of the source here: https://arxiv.org/abs/2003.02320
+\usepackage{kg-macros}
+\usepackage{booktabs}
+
+
+\begin{document}
+
+\section{Nodes and edges}
+
+\begin{tabular}{l|c}
+	Command & Example\\
+  \hline
+  & \gnode{Node} \\
+  & \bnode{One} \\
+  & \tnode{One} \\
+  & \ginode{one} \\
+  & \gienode{one} \\
+  & \gvar{variable} \\
+  & \shap{test} \\
+  & \sedge[arrin][3.2cm]{one}{two}{three}{four} \\
+  & \gelab{edge label} \\
+  & \gielab{edge label} \\
+  & \nc{one} \\
+  & \gedge[arrin][3.2cm]{x}{edge}{y} \\ %arrin = arrow in
+  & \gedge[arrout][3.2cm]{x}{edge}{y} \\ % arrout = arrow out
+  & \gedge[arroutin][3.2cm]{x}{edge}{y} \\ % arrout = arrow out
+  & \gedgenonodes{edge}{arrout}{two} \\ % Not sure that the arguments are correct
+	& \gloop[iri]{one}{two} \\ %iri = gray
+
+	& \giloop[iri]{one}{two} \\
+	& \dtt{one}{two} \\
+	& \uri{test} \\
+	& \urit{test} \\
+	& \ttt{test} \\
+	& \uriq{test} \\
+	& \uriqt{test} \\
+	& \dtsep \\
+	
+	& \aelab{one}{two} \\
+%	& \al{?} \\	
+%	& \alt{?} \\
+	& \vs{1} \\
+	& \msg{one}{two} \\
+	& \encircle{one} 
+\end{tabular}
+
+
+\section{Figures}
+
+\begin{figure}[h]
+    \setlength{\vgap}{0.9cm}
+    \setlength{\hgap}{2.9cm}
+    \centering
+    \begin{tikzpicture}
+        \node[iri,anchor=center] (robot) {Robot};
+
+        \node[var,anchor=center,right=1.5\hgap of robot] (c1) {Component}
+            edge[arrin] node[lab] {:has component} (robot);
+        \node[var,anchor=center,right=1.5\hgap of robot, yshift=-0.9cm] (c2) {Component2}
+            edge[arrin, bend left = 15] node[lab] {:has component} (robot);
+
+        \node[rect,anchor=center, above=\vgap of c1, yshift= 0.8cm] (cs) {:ControlStation}
+            edge[arrin] node[lab] {:has component} (robot);
+        \node[rte,anchor=center,below=\vgap of robot] (rc) {:RemoteControl}
+            edge[arrin] node[lab] {:has component} (robot);
+    \end{tikzpicture}
+    \caption{Edge demo}
+\end{figure}
+
+
+\begin{figure}[h]
+    \setlength{\vgap}{0.3cm}
+    \setlength{\hgap}{2.9cm}
+    \centering
+    \begin{tikzpicture}
+        \node[iri,anchor=center] (r0) {iri};
+
+        \node[var,anchor=center,below=\vgap of r0] (r1) {var};
+        \node[rt,anchor=center,below=\vgap of r1] (r2) {rt};
+        \node[rte,anchor=center,below=\vgap of r2] (r3) {rte};
+        \node[rect,anchor=center,below=\vgap of r3] (r4) {rect};
+        \node[erect,anchor=center,below=\vgap of r4] (r5) {erect};
+        \node[nrect,anchor=center,below=\vgap of r5] (r6) {nrect};
+        \node[rectw,anchor=center,below=\vgap of r6] (r7) {rectw};
+        \node[std,anchor=center,below=\vgap of r7] (r8) {std};
+        \node[lab,anchor=center,below=\vgap of r8] (r9) {lab};
+        \node[vlab,anchor=center,below=\vgap of r9] (r10) {vlab};
+        \node[bnode,anchor=center,below=\vgap of r10] (r11) {bnode};
+        \node[task,anchor=center,below=\vgap of r11] (r12) {task};
+        \node[block,anchor=center,below=\vgap of r12] (r13) {block};
+    \end{tikzpicture}
+    \caption{Node styles in figures}
+\end{figure}
+
+
+\end{document}
